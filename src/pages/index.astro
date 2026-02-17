@@ -1,8 +1,11 @@
 ---
-import DefaultLayout from "../layouts/DefaultLayout.astro";
 import { Image } from "astro:assets";
-import HeadshotImage from "../images/luke-climenhage.webp";
 import { getEntry } from "astro:content";
+
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import HeadshotImage from "../images/luke-climenhage.webp";
+import GithubIcon from "../images/github-icon.svg";
+import LinkedinIcon from "../images/linkedin-icon.svg";
 
 // Load content from markdown file
 const homeContent = await getEntry("pages", "home");
@@ -12,7 +15,7 @@ const content = homeContent.data;
 <DefaultLayout title="Home - Luke Climenhage">
   <main class="min-h-screen relative z-10">
     <!-- Hero Section -->
-    <section class="max-w-4xl mx-auto px-6 py-20">
+    <section class="max-w-4xl mx-auto px-6 pt-20 pb-10">
       <div class="flex flex-col items-center gap-8">
         <!-- Profile Image -->
         <div class="flex-shrink-0">
@@ -24,7 +27,7 @@ const content = homeContent.data;
         </div>
 
         <!-- Hero Text -->
-        <div class="text-center">
+        <div class="flex flex-col justify-center text-center">
           <h1 class="text-5xl font-bold text-white mb-2">
             {content.hero.name}
           </h1>
@@ -34,10 +37,42 @@ const content = homeContent.data;
           <p class="text-gray-300 text-lg leading-relaxed mb-6">
             {content.hero.description}
           </p>
-          <p class="text-green-400 font-semibold text-xl">
-            {content.hero.tagline}
-          </p>
+          <div
+            class="flex items-center rounded-full border border-white/10 bg-zinc-900/80 px-5 py-2 backdrop-blur-3xl mt-2 w-fit mx-auto"
+          >
+            <span class="relative flex size-3"
+              ><span
+                class="bg-green-600/80 absolute inline-flex size-full animate-ping rounded-full opacity-75"
+              ></span><span
+                class="bg-green-500/80 relative inline-flex size-3 scale-90 rounded-full"
+              ></span></span
+            ><span class="text-green-500/80 ml-2 text-sm font-medium"
+              >{content.hero.tagline}</span
+            >
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="max-w-4xl mx-auto px-6 py-4">
+      <div class="flex flex-wrap justify-center gap-8">
+        <a
+          href="https://github.com/lukeclimen"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fill-gray-300 hover:fill-white"
+        >
+          <GithubIcon width={36} height={36} fill="#currentColor" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/lclimenh"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fill-gray-300 hover:fill-white"
+        >
+          <LinkedinIcon width={36} height={36} fill="#currentColor" />
+        </a>
       </div>
     </section>
   </main>
