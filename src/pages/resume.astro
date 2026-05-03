@@ -1,7 +1,158 @@
 ---
+import { getEntry } from "astro:content";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+const resumeContent = await getEntry("pages", "resume");
+const { experience, education, hobbies } = resumeContent?.data;
 ---
 
-<DefaultLayout title="Resume - Luke Climenhage">
-  <main class="relative z-10">Resume</main>
+<DefaultLayout title="About - Luke Climenhage">
+  <main class="relative z-10 max-w-3xl mx-auto px-6 py-12">
+    <!-- Work Experience -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold italic text-white mb-6">Work Experience</h2>
+
+      <div class="space-y-10">
+        {
+          experience?.map(
+            (role: {
+              company: unknown;
+              title: unknown;
+              startDate: unknown;
+              endDate: unknown;
+              description: unknown;
+              bullets: string[];
+              ventures: { name: string; period: string; bullets: string[] }[];
+            }) => (
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-1">
+                  <span class="text-white font-semibold">
+                    {role.company} - {role.title}
+                  </span>
+                  <span class="text-gray-400 text-sm whitespace-nowrap">
+                    {role.startDate} – {role.endDate}
+                  </span>
+                </div>
+                {role.description && (
+                  <p class="text-gray-300 text-sm leading-relaxed mt-2 mb-4">
+                    {role.description}
+                  </p>
+                )}
+                {role.bullets && role.bullets.length > 0 && (
+                  <ul class="list-disc list-inside space-y-1">
+                    {role.bullets.map((bullet: string) => (
+                      <li class="text-gray-300 text-sm leading-relaxed">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {role.ventures && role.ventures.length > 0 && (
+                  <div class="space-y-6 mt-4">
+                    {role.ventures.map(
+                      (venture: {
+                        name: string;
+                        period: string;
+                        bullets: string[];
+                      }) => (
+                        <div>
+                          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-2">
+                            <span class="text-white font-semibold text-sm">
+                              {venture.name}
+                            </span>
+                            <span class="text-gray-400 text-sm whitespace-nowrap">
+                              {venture.period}
+                            </span>
+                          </div>
+                          <ul class="list-disc list-inside space-y-1">
+                            {venture.bullets.map((bullet: string) => (
+                              <li class="text-gray-300 text-sm leading-relaxed">
+                                {bullet}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                )}
+              </div>
+            ),
+          )
+        }
+      </div>
+    </section>
+
+    <div class="border-t border-white/10 mb-12"></div>
+
+    <!-- Education -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold italic text-white mb-6">Education</h2>
+
+      <div class="space-y-6">
+        {
+          education?.map(
+            (edu: {
+              school: unknown;
+              degree: unknown;
+              startDate: unknown;
+              endDate: unknown;
+              details: string[];
+            }) => (
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-1">
+                  <span class="text-white font-semibold">
+                    {edu.school} - {edu.degree}
+                  </span>
+                  <span class="text-gray-400 text-sm whitespace-nowrap">
+                    {edu.startDate} – {edu.endDate}
+                  </span>
+                </div>
+                <ul class="list-disc list-inside space-y-1 mt-1">
+                  {edu.details.map((detail: string) => (
+                    <li class="text-gray-300 text-sm leading-relaxed">
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </section>
+
+    <div class="border-t border-white/10 mb-12"></div>
+
+    <!-- Hobbies & Activities -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold italic text-white mb-6">
+        Hobbies and Activities
+      </h2>
+
+      <div class="space-y-3">
+        {
+          hobbies?.map(
+            (hobby: {
+              name: unknown;
+              description: unknown;
+              period: unknown;
+            }) => (
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5">
+                <div>
+                  <span class="text-white font-medium">{hobby.name}</span>
+                  {hobby.description && (
+                    <p class="text-gray-400 text-sm">{hobby.description}</p>
+                  )}
+                </div>
+                <span class="text-gray-400 text-sm whitespace-nowrap">
+                  {hobby.period}
+                </span>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </section>
+  </main>
 </DefaultLayout>
