@@ -1,5 +1,6 @@
 ---
 import Footer from "./Footer.astro";
+import Nav from "./Nav.astro";
 
 const { title } = Astro.props;
 ---
@@ -12,6 +13,7 @@ const { title } = Astro.props;
   </head>
   <body class="min-h-screen">
     <canvas id="gridCanvas"></canvas>
+    <Nav />
     <slot />
     <Footer />
   </body>
