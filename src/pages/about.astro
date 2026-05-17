@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import LinkCard from "../components/LinkCard.vue";
+import HoveredTechName from "../components/HoveredTechName.vue";
 
 const aboutContent = await getEntry("pages", "about");
 const { bio, stack } = aboutContent?.data;
@@ -25,7 +26,10 @@ const { bio, stack } = aboutContent?.data;
 
     <!-- Stack Section -->
     <section class="mb-12">
-      <h2 class="text-xl font-bold italic text-white mb-6">Stack</h2>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-white italic text-3xl font-bold">Stack</h2>
+        <HoveredTechName client:load />
+      </div>
       <div class="space-y-8">
         {
           stack?.map(
@@ -40,7 +44,12 @@ const { bio, stack } = aboutContent?.data;
                 <div class="flex flex-wrap gap-2">
                   {group.technologies.map(
                     (tech: { name: string; url?: string; image?: string }) => (
-                      <LinkCard client:load name={tech.name} url={tech.url} image={tech.image} />
+                      <LinkCard
+                        client:load
+                        name={tech.name}
+                        url={tech.url}
+                        image={tech.image}
+                      />
                     ),
                   )}
                 </div>

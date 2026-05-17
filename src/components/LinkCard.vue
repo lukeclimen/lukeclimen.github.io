@@ -1,6 +1,8 @@
 <template>
   <a
     :href="url"
+    @mouseenter="hoveredTech = name"
+    @mouseleave="hoveredTech = null"
     rel="noopener noreferrer"
     target="_blank"
     :aria-label="`${name} link`"
@@ -23,6 +25,9 @@
 </template>
 
 <script setup lang="ts">
+import { useHoveredTech } from "../composables/useHoveredTech";
+const { hoveredTech } = useHoveredTech();
+
 defineProps<{
   name: string;
   url: string;
