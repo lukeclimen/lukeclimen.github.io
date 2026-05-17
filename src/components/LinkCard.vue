@@ -1,12 +1,17 @@
 <template>
   <a
     :href="url"
-    @mouseenter="hoveredTech = startYear != null && endYear != null ? { name, startYear, endYear } : null"
+    @mouseenter="
+      hoveredTech =
+        startYear != null && endYear != null
+          ? { name, startYear, endYear }
+          : null
+    "
     @mouseleave="hoveredTech = null"
     rel="noopener noreferrer"
     target="_blank"
     :aria-label="`${name} link`"
-    class="relative transform-gpu overflow-hidden rounded-xl lg:rounded-2xl p-6"
+    class="relative transform-gpu overflow-hidden rounded-xl lg:rounded-2xl p-6 shadow-transparent hover:shadow-lg hover:shadow-purple-300/50 transition-shadow duration-300 ease-out"
   >
     <div
       class="absolute inset-x-0 bottom-3 lg:bottom-4 top-0 rounded-t-xl lg:rounded-t-2xl bg-gradient-to-b from-white/20 to-transparent"
