@@ -72,6 +72,23 @@ const pagesCollection = defineCollection({
         }),
       )
       .optional(),
+
+    // About page fields
+    bio: z.array(z.string()).optional(),
+    stack: z
+      .array(
+        z.object({
+          category: z.string(),
+          technologies: z.array(
+            z.object({
+              name: z.string(),
+              url: z.string().optional(),
+              image: z.string().optional(),
+            }),
+          ),
+        }),
+      )
+      .optional(),
   }),
 });
 

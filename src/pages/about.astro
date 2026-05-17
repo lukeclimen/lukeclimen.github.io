@@ -1,7 +1,54 @@
 ---
+import { getEntry } from "astro:content";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import LinkCard from "../components/LinkCard.vue";
+
+const aboutContent = await getEntry("pages", "about");
+const { bio, stack } = aboutContent?.data;
 ---
 
 <DefaultLayout title="About - Luke Climenhage">
-  <main class="relative z-10">About</main>
+  <main class="relative z-10 max-w-3xl mx-auto px-6 py-12">
+    <!-- Bio Section -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold italic text-white mb-6">Background</h2>
+      <div class="space-y-4">
+        {
+          bio?.map((paragraph: string) => (
+            <p class="text-gray-300 leading-relaxed">{paragraph}</p>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="border-t border-white/10 mb-12"></div>
+
+    <!-- Stack Section -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold italic text-white mb-6">Stack</h2>
+      <div class="space-y-8">
+        {
+          stack?.map(
+            (group: {
+              category: string;
+              technologies: { name: string; url?: string; image?: string }[];
+            }) => (
+              <div>
+                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                  {group.category}
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  {group.technologies.map(
+                    (tech: { name: string; url?: string; image?: string }) => (
+                      <LinkCard client:load name={tech.name} url={tech.url} image={tech.image} />
+                    ),
+                  )}
+                </div>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </section>
+  </main>
 </DefaultLayout>
