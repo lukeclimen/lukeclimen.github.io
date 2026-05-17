@@ -1,7 +1,7 @@
 <template>
   <a
     :href="url"
-    @mouseenter="hoveredTech = name"
+    @mouseenter="hoveredTech = startYear != null && endYear != null ? { name, startYear, endYear } : null"
     @mouseleave="hoveredTech = null"
     rel="noopener noreferrer"
     target="_blank"
@@ -32,5 +32,7 @@ defineProps<{
   name: string;
   url: string;
   image: string;
+  startYear?: number;
+  endYear?: number | "present";
 }>();
 </script>

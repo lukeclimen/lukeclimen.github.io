@@ -12,58 +12,92 @@ stack:
       - name: "Vue.js"
         url: "https://vuejs.org"
         image: "/icons/vue-color.svg"
+        startYear: 2023
+        endYear: present
       - name: "React"
         url: "https://react.dev"
         image: "/icons/react.svg"
+        startYear: 2021
+        endYear: 2023
       - name: "Nuxt"
         url: "https://nuxt.com"
         image: "/icons/nuxt-color.svg"
+        startYear: 2024
+        endYear: present
       - name: "Tailwind CSS"
         url: "https://tailwindcss.com"
         image: "/icons/tailwind-color.svg"
+        startYear: 2022
+        endYear: present
   - category: "Backend"
     technologies:
       - name: "Python"
         url: "https://python.org"
         image: "/icons/python.svg"
+        startYear: 2021
+        endYear: present
       - name: "FastAPI"
         url: "https://fastapi.tiangolo.com"
         image: "/icons/fastapi.svg"
+        startYear: 2023
+        endYear: present
       - name: "Express.js"
         url: "https://expressjs.com"
         image: "/icons/expressjs.svg"
+        startYear: 2021
+        endYear: 2024
       - name: "Node.js"
         url: "https://nodejs.org"
         image: "/icons/nodejs.svg"
+        startYear: 2021
+        endYear: 2023
       - name: "Java"
         url: "https://java.com"
         image: "/icons/java.svg"
+        startYear: 2021
+        endYear: 2023
   - category: "Databases"
     technologies:
       - name: "PostgreSQL"
         url: "https://postgresql.org"
         image: "/icons/postgresql.svg"
+        startYear: 2023
+        endYear: present
       - name: "MongoDB"
         url: "https://mongodb.com"
         image: "/icons/mongodb.svg"
+        startYear: 2022
+        endYear: present
   - category: "Tools & Platforms"
     technologies:
       - name: "Docker"
         url: "https://docker.com"
         image: "/icons/docker.svg"
+        startYear: 2023
+        endYear: present
       - name: "Azure"
         url: "https://azure.microsoft.com"
         image: "/icons/azure.svg"
+        startYear: 2023
+        endYear: present
       - name: "Git"
         url: "https://git-scm.com"
         image: "/icons/git.svg"
+        startYear: 2021
+        endYear: present
       - name: "GitLab"
         url: "https://gitlab.com"
         image: "/icons/gitlab.svg"
+        startYear: 2023
+        endYear: present
       - name: "Postman"
         url: "https://postman.com"
         image: "/icons/postman.svg"
+        startYear: 2022
+        endYear: present
       - name: "Figma"
         url: "https://figma.com"
         image: "/icons/figma-color.svg"
+        startYear: 2023
+        endYear: present
 ---

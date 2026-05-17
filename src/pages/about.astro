@@ -26,7 +26,7 @@ const { bio, stack } = aboutContent?.data;
 
     <!-- Stack Section -->
     <section class="mb-12">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center justify-between mb-6 h-14">
         <h2 class="text-white italic text-3xl font-bold">Stack</h2>
         <HoveredTechName client:load />
       </div>
@@ -35,7 +35,7 @@ const { bio, stack } = aboutContent?.data;
           stack?.map(
             (group: {
               category: string;
-              technologies: { name: string; url?: string; image?: string }[];
+              technologies: { name: string; url?: string; image?: string; startYear?: number; endYear?: number | "present" }[];
             }) => (
               <div>
                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
@@ -43,12 +43,14 @@ const { bio, stack } = aboutContent?.data;
                 </h3>
                 <div class="flex flex-wrap gap-2">
                   {group.technologies.map(
-                    (tech: { name: string; url?: string; image?: string }) => (
+                    (tech: { name: string; url?: string; image?: string; startYear?: number; endYear?: number | "present" }) => (
                       <LinkCard
                         client:load
                         name={tech.name}
                         url={tech.url}
                         image={tech.image}
+                        startYear={tech.startYear}
+                        endYear={tech.endYear}
                       />
                     ),
                   )}

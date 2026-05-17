@@ -84,6 +84,8 @@ const pagesCollection = defineCollection({
               name: z.string(),
               url: z.string().optional(),
               image: z.string().optional(),
+              startYear: z.number().optional(),
+              endYear: z.union([z.number(), z.literal("present")]).optional(),
             }),
           ),
         }),
