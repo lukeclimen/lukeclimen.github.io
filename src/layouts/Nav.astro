@@ -15,30 +15,38 @@ const currentPath = Astro.url.pathname;
 
 <nav class="relative z-10 w-full">
   <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
-    <a href="/" class="text-white font-semibold text-lg tracking-tight hover:text-purple-300 transition-colors">
-      LC
+    <a href="/" class="hover:opacity-75 transition-opacity">
+      <img
+        src="/icons/luke-climenhage.svg"
+        alt="Luke Climenhage"
+        class="h-9 w-9"
+      />
     </a>
 
     <!-- Desktop links -->
     <ul class="hidden sm:flex items-center gap-1">
-      {links.map(({ label, href }) => {
-        const isActive = currentPath === href || (href !== "/" && currentPath.startsWith(href));
-        return (
-          <li>
-            <a
-              href={href}
-              class:list={[
-                "px-4 py-1.5 rounded-full text-sm font-medium transition-colors",
-                isActive
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5",
-              ]}
-            >
-              {label}
-            </a>
-          </li>
-        );
-      })}
+      {
+        links.map(({ label, href }) => {
+          const isActive =
+            currentPath === href ||
+            (href !== "/" && currentPath.startsWith(href));
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  "px-4 py-1.5 rounded-full text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-white/10 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-white/5",
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
     </ul>
 
     <!-- Mobile hamburger -->
@@ -48,36 +56,68 @@ const currentPath = Astro.url.pathname;
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      <svg
+        id="icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
-      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="hidden">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      <svg
+        id="icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+        class="hidden"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
 
   <!-- Mobile menu -->
-  <div id="nav-menu" class="hidden sm:hidden border-t border-white/10 bg-zinc-900/90 backdrop-blur-md">
+  <div
+    id="nav-menu"
+    class="hidden sm:hidden border-t border-white/10 bg-zinc-900/90 backdrop-blur-md"
+  >
     <ul class="max-w-4xl mx-auto px-6 py-3 flex flex-col gap-1">
-      {links.map(({ label, href }) => {
-        const isActive = currentPath === href || (href !== "/" && currentPath.startsWith(href));
-        return (
-          <li>
-            <a
-              href={href}
-              class:list={[
-                "block px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-                isActive
-                  ? "bg-white/10 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5",
-              ]}
-            >
-              {label}
-            </a>
-          </li>
-        );
-      })}
+      {
+        links.map(({ label, href }) => {
+          const isActive =
+            currentPath === href ||
+            (href !== "/" && currentPath.startsWith(href));
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  "block px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-white/10 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-white/5",
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
     </ul>
   </div>
 </nav>
