@@ -1,7 +1,35 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import ContactForm from "../components/ContactForm.vue";
 ---
 
 <DefaultLayout title="Contact - Luke Climenhage">
-  <main class="relative z-10">Contact</main>
+  <main class="relative z-10 flex-1">
+    <div class="max-w-4xl mx-auto px-6 py-16 lg:py-28">
+      <div class="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-start">
+        <div class="lg:sticky lg:top-20">
+          <p
+            class="font-display text-[10px] uppercase tracking-[0.2em] text-purple-200/50 mb-5"
+          >
+            Contact
+          </p>
+          <h1
+            class="font-display text-4xl lg:text-5xl font-light text-white leading-tight mb-6"
+          >
+            Get in<br />touch.
+          </h1>
+          <p class="text-purple-200/50 text-sm leading-relaxed max-w-[30ch]">
+            Whether it's a new role, a project, or just a hello — I'd like to
+            hear from you.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl border border-white/[0.08] bg-[#1a0b2e]/75 backdrop-blur-sm px-8 py-10"
+        >
+          <ContactForm client:load />
+        </div>
+      </div>
+    </div>
+  </main>
 </DefaultLayout>
