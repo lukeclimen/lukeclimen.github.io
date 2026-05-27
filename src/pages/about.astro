@@ -12,11 +12,11 @@ const { bio, stack } = aboutContent?.data;
   <main class="relative z-10 max-w-3xl mx-auto px-6 py-12">
     <!-- Bio Section -->
     <section class="mb-6">
-      <h2 class="text-white italic text-3xl font-bold mb-6">Background</h2>
+      <h2 class="font-display text-sm font-light tracking-widest text-white uppercase mb-8">Background</h2>
       <div class="space-y-4">
         {
           bio?.map((paragraph: string) => (
-            <p class="text-gray-300 leading-relaxed">{paragraph}</p>
+            <p class="text-purple-100/75 leading-relaxed">{paragraph}</p>
           ))
         }
       </div>
@@ -27,7 +27,7 @@ const { bio, stack } = aboutContent?.data;
     <!-- Stack Section -->
     <section class="mb-12">
       <div class="flex items-center justify-between mb-6 h-14">
-        <h2 class="text-white italic text-3xl font-bold">Stack</h2>
+        <h2 class="font-display text-sm font-light tracking-widest text-white uppercase">Stack</h2>
         <HoveredTechName client:load />
       </div>
       <div class="space-y-8">
@@ -44,7 +44,7 @@ const { bio, stack } = aboutContent?.data;
               }[];
             }) => (
               <div>
-                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                <h3 class="font-display text-xs font-medium text-purple-300 uppercase tracking-widest mb-3">
                   {group.category}
                 </h3>
                 <div class="flex flex-wrap gap-2">

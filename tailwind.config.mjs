@@ -5,6 +5,10 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['"Josefin Sans"', 'sans-serif'],
+        body: ['Jost', 'sans-serif'],
+      },
       textShadow: {
         glow: "0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.5)",
       },
