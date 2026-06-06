@@ -20,6 +20,8 @@ jobs:
         run: corepack enable
       - name: Install, build, and upload your site
         uses: withastro/action@v5
+        env:
+          PUBLIC_FORM_API_KEY: ${{ vars.PUBLIC_FORM_API_KEY }}
         # with:
         # path: .
         # node-version: 24
