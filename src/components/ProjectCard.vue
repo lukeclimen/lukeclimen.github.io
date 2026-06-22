@@ -1,9 +1,10 @@
 <template>
   <div
-    class="card relative aspect-[4/3] [perspective:1400px]"
+    class="card relative aspect-[4/3] max-xl:cursor-pointer [perspective:1400px]"
     :class="{ flipped: isFlipped }"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
+    @click="onCardClick"
   >
     <div
       class="card-inner relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-style:preserve-3d] [will-change:transform]"
@@ -11,7 +12,6 @@
       <!-- Front -->
       <div
         class="card-face absolute inset-0 overflow-hidden rounded-2xl transition-shadow duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] bg-[oklch(0.18_0.012_270)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_12px_32px_-16px_rgba(0,0,0,0.7),0_2px_6px_-2px_rgba(0,0,0,0.5)]"
-        @click="onFrontClick"
       >
         <img
           :src="imageUrl"
@@ -36,7 +36,6 @@
       <!-- Back -->
       <div
         class="card-face absolute inset-0 overflow-hidden rounded-2xl transition-shadow duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] bg-[oklch(0.16_0.015_270)] bg-[radial-gradient(120%_80%_at_50%_110%,rgba(147,51,234,0.10)_0%,transparent_60%)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_12px_32px_-16px_rgba(0,0,0,0.7),0_2px_6px_-2px_rgba(0,0,0,0.5)] before:content-[''] before:absolute before:inset-x-4 before:top-0 before:h-px before:pointer-events-none before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
-        @click="onBackClick"
       >
         <div
           class="relative h-full flex flex-col justify-between gap-4 px-5 pt-5 pb-4"
@@ -110,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 defineProps<{
   name: string;
@@ -121,23 +120,32 @@ defineProps<{
 }>();
 
 const isFlipped = ref(false);
-const hasHover = ref(true);
+const isDesktop = ref(false);
+let mql: MediaQueryList | null = null;
+
+function syncBreakpoint(e: MediaQueryListEvent | MediaQueryList) {
+  isDesktop.value = e.matches;
+  if (!e.matches) isFlipped.value = false;
+}
 
 onMounted(() => {
-  hasHover.value = window.matchMedia("(hover: hover)").matches;
+  mql = window.matchMedia("(min-width: 1280px)");
+  syncBreakpoint(mql);
+  mql.addEventListener("change", syncBreakpoint);
+});
+
+onBeforeUnmount(() => {
+  mql?.removeEventListener("change", syncBreakpoint);
 });
 
 function onMouseEnter() {
-  if (hasHover.value) isFlipped.value = true;
+  if (isDesktop.value) isFlipped.value = true;
 }
 function onMouseLeave() {
-  if (hasHover.value) isFlipped.value = false;
+  if (isDesktop.value) isFlipped.value = false;
 }
-function onFrontClick() {
-  if (!hasHover.value) isFlipped.value = true;
-}
-function onBackClick() {
-  if (!hasHover.value) isFlipped.value = false;
+function onCardClick() {
+  if (!isDesktop.value) isFlipped.value = !isFlipped.value;
 }
 </script>
 
