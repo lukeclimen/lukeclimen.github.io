@@ -19,6 +19,10 @@
           class="absolute inset-0 h-full w-full object-cover"
         />
         <div
+          aria-hidden="true"
+          class="absolute inset-0 bg-black/25 pointer-events-none"
+        ></div>
+        <div
           class="absolute inset-x-0 bottom-0 px-4 pt-6 pb-3.5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
         >
           <h3
