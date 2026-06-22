@@ -1,7 +1,45 @@
 ---
+import { getEntry } from "astro:content";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import ProjectCard from "../components/ProjectCard.vue";
+
+const projectsContent = await getEntry("pages", "projects");
+const projects = projectsContent?.data.projects ?? [];
 ---
 
 <DefaultLayout title="Projects - Luke Climenhage">
-  <main class="relative z-10">Projects</main>
+  <main class="relative z-10 max-w-5xl mx-auto px-6 py-12 w-full">
+    <h2
+      class="font-display text-sm font-light tracking-widest text-white uppercase mb-8"
+    >
+      Projects
+    </h2>
+
+    {
+      projects.length === 0 ? (
+        <p class="text-purple-100/60">No projects yet.</p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map(
+            (project: {
+              name: string;
+              description: string;
+              imageUrl: string;
+              liveUrl: string;
+              repoUrl: string;
+            }) => (
+              <ProjectCard
+                client:load
+                name={project.name}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                liveUrl={project.liveUrl}
+                repoUrl={project.repoUrl}
+              />
+            ),
+          )}
+        </div>
+      )
+    }
+  </main>
 </DefaultLayout>

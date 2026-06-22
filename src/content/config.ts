@@ -73,6 +73,19 @@ const pagesCollection = defineCollection({
       )
       .optional(),
 
+    // Projects page fields
+    projects: z
+      .array(
+        z.object({
+          name: z.string(),
+          description: z.string(),
+          imageUrl: z.string(),
+          liveUrl: z.string(),
+          repoUrl: z.string(),
+        }),
+      )
+      .optional(),
+
     // About page fields
     bio: z.array(z.string()).optional(),
     stack: z
